@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello World!" />
+
+
+    <TextView
+        android:id="@+id/tv_show2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello World!" />
+
+    <Button
+        android:id="@+id/btn_click"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="kotlin点击事件(匿名内部类)"
+        android:textAllCaps="false" />
+
+
+    <Button
+        android:id="@+id/btn_click2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="kotlin点击事件(全局实现OnClickListener接口)"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn_click3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="click3"
+        android:text="kotlin点击事件(XML中指定onClick属性)"
+        android:textAllCaps="false" />
+</LinearLayout>
