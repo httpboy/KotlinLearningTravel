@@ -9,6 +9,7 @@ import android.widget.Button
 import com.boy.learning.appktjetpack.R
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.boy.learning.appktjetpack.mvp.impl.LoginPresenter
 
 
 class FirstFragment : Fragment() {
@@ -16,6 +17,7 @@ class FirstFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        lifecycle.addObserver(LoginPresenter(context!!))//在Fragment中添加观察者
         return inflater.inflate(R.layout.fragment_first, container, false)
     }
 

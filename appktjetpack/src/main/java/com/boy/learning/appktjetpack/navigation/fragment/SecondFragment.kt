@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.boy.learning.appktjetpack.R
+import com.boy.learning.appktjetpack.mvp.impl.LoginPresenter
 import kotlinx.android.synthetic.main.fragment_second.*
 
 
