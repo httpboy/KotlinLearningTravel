@@ -57,9 +57,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun runCoroutineByThirdWay() {
 
-    }
 
 
     /**
@@ -86,6 +84,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             delay(1000L)
             println("Coroutine test runCoroutineBySecondWay()!")
         }
+    }
+    /**
+     * 用launch启动一个协程的时候，当前线程不会阻塞
+     * 有点像轻量级线程了，用GlobalScope则代表这个协程生命周期
+     * 跟应用进程是挂钩的，不受控制，所以一般不建议用。
+     */
+    private fun runCoroutineByThirdWay()= runBlocking {
+        val job=async(Dispatchers.Default){
+            delay(200)
+            Log.v(TAG, "Coroutine test runCoroutineByThirdWay()")
+            return@async "hello i am runCoroutineByThirdWay()"
+        }
+        Log.v(TAG, job.await())
     }
 
     fun click3(v: View?) {
