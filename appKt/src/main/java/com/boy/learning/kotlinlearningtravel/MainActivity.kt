@@ -85,10 +85,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             println("Coroutine test runCoroutineBySecondWay()!")
         }
     }
+
     /**
-     * 用launch启动一个协程的时候，当前线程不会阻塞
-     * 有点像轻量级线程了，用GlobalScope则代表这个协程生命周期
-     * 跟应用进程是挂钩的，不受控制，所以一般不建议用。
+     * 首先用runBlocking开启一个异步的协程
+     * 在该协程里面。Dispatchers.Default是一个默认的协程调度器是CoroutineContext的一种
+     * 采用了lambda表达式，最后一个参数可以写在括号外面
      */
     private fun runCoroutineByThirdWay()= runBlocking {
         val job=async(Dispatchers.Default){
