@@ -1,21 +1,26 @@
-package com.lucky.kotlin.luckykotlinlearning
+package com.boy.learning.kotlinlearningtravel.basic
 
 /**
- * 定义常量与变量
+ * 1.定义变量
+ * 定义只读局部变量使用关键字 val 定义。只能为其赋值一次。
+ *
  */
 fun main(args: Array<String>) {
     //声明时初始化
     var a: Int = 1
     println(a)
-    var b = 2// 系统自动推断变量类型为Int
+    // 系统自动推断变量类型为Int
+    var b = 2
     println(b)
     //不在声明时初始化
     var c: Int// 如果不在声明时初始化则必须提供变量类型
     c = 3// 明确赋值
     println(c)
-    var x = 4// 系统自动推断变量类型为Int
-    x += 1// 变量可修改
-    println(x)
+    // 系统自动推断变量类型为Int
+    var d = 4
+    // 变量可修改
+    d += 1
+    println(d)
     //字符串模板
     var y = 1
     val yStr = "y is $y"
