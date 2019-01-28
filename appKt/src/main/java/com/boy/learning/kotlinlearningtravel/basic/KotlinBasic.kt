@@ -7,13 +7,13 @@ package com.boy.learning.kotlinlearningtravel.basic
  */
 fun main(args: Array<String>) {
     //声明时初始化
-    var a: Int = 1
+    val a: Int = 1
     println(a)
     // 系统自动推断变量类型为Int
-    var b = 2
+    val b = 2
     println(b)
     //不在声明时初始化
-    var c: Int// 如果不在声明时初始化则必须提供变量类型
+    val c: Int// 如果不在声明时初始化则必须提供变量类型
     c = 3// 明确赋值
     println(c)
     // 系统自动推断变量类型为Int
