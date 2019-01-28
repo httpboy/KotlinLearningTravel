@@ -1,4 +1,4 @@
-package com.boy.learning.kotlinlearningtravel.basic
+package com.boy.learning.kotlinlearningtravel.basictypes
 
 /**
  * Kotlin 中使用的基本类型：数字、字符、布尔值、数组与字符串。
