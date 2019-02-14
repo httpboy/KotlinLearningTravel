@@ -1,11 +1,11 @@
-package com.lucky.kotlin.luckykotlinlearning
+package com.boy.learning.kotlinlearningtravel
 
 
 /**
  * Kotlin 类和对象
  * 1.类定义
  * 2.类的属性
- * 3.主构造器
+ * 3.主构造函数
  * 4.次构造函数
  * 5.抽象类
  * 6.嵌套类
@@ -15,34 +15,57 @@ package com.lucky.kotlin.luckykotlinlearning
  */
 fun main(args: Array<String>) {
     //-----------------------类定义-------------------------------------
-
     val hello = Hello()
-    println(hello.name + ":" + hello.age)//输出 boyi.chen:100
+    println(hello.name + ":" + hello.age)//输出结果-------------------------boyi.chen:100-------------------------
 
     val hello2 = Hello2()
-    println(hello2.name + ":" + hello2.age)//输出 BOYI.CHEN:100
+    println(hello2.name + ":" + hello2.age)//输出结果-------------------------BOYI.CHEN:100-------------------------
+
     hello2.name = "我想改变名字"
-    println(hello2.name + ":" + hello2.age)//输出 不能改名字，你应该输入BOYI.CHEN:100
+    println(hello2.name + ":" + hello2.age)//输出结果-------------------------不能改名字，你应该输入BOYI.CHEN:100-------------------------
 
     //如果hello对象没初始话
     //报错kotlin.UninitializedPropertyAccessException: lateinit property hello has not been initialized
-    //输出 不能改名字，你应该输入BOYI.CHEN:100:100
     hello2.setup()
-    println(hello2.name + ":" + hello2.age + ":" + hello2.hello.age)//不能改名字，你应该输入BOYI.CHEN:100
+    println(hello2.name + ":" + hello2.age + ":" + hello2.hello.age)//输出结果-------------------------不能改名字，你应该输入BOYI.CHEN:100-------------------------
 
-    //-----------------------主构造器-------------------------------------
+
+
+
+    //-----------------------主、次构造函数-------------------------------------
     //如果类有主构造函数，每个次构造函数都要，或直接或间接通过另一个次构造函数代理主构造函数
-    val student = Student("boyi.chen")//输出 name is boyi.chen
-    Student("boyi.chen", 666)//输出 name is boyi.chen /n name is boyi.chen : age is 666
-    Student2()//name is
-    Student2("boyi.chen")//name is boyi.chen
+    val student = Student("boyi.chen")
+
+//    *********************************输出结果*********************************
+//    First property: boyi.chen
+//    初始化块->name is boyi.chen
+//    *********************************输出结果*********************************
+
+    Student("boyi.chen", 666)
+//    *********************************输出结果*********************************
+//    name is boyi.chen : age is 666
+//    name is
+//    *********************************输出结果*********************************
+    Student2()//输出结果-------------------------name is-------------------------
+
+    Student2("boyi.chen")//输出结果-------------------------name is boyi.chen-------------------------
+
+
 
     //-----------------------嵌套类 -------------------------------------
-    println(Outer.Inner().age)//999
+    println(Outer.Inner().age)//输出结果-------------------------999-------------------------
+
+
+
+
 
     //-----------------------内部类-------------------------------------
-    println(Outer2().Inner2().temp)//boyi.chen
-    println(Outer2().Inner2().objects.name2)//boyi.chen2
+    println(Outer2().Inner2().temp)//输出结果-------------------------boyi.chen-------------------------
+    println(Outer2().Inner2().objects.name2)//输出结果-------------------------boyi.chen2-------------------------
+
+
+
+
 
     //-----------------------匿名内部类-------------------------------------
     val test = Test()//输出 接口定义的方法在匿名内部类中实现
@@ -50,7 +73,7 @@ fun main(args: Array<String>) {
         override fun test() {
             println("接口定义的方法在匿名内部类中实现")
         }
-    })
+    })//输出结果-------------------------接口定义的方法在匿名内部类中实现-------------------------
 
 
     //----------------------- 类的修饰符-------------------------------------
@@ -68,6 +91,7 @@ fun main(args: Array<String>) {
 
 }
 
+//-----------------------类定义-------------------------------------
 class Hello {
     var name: String = "boyi.chen"
     var age: Int = 100
@@ -93,14 +117,20 @@ class Hello2() {
     }
 }
 
-//-----------------------次构造函数-------------------------------------
+//-----------------------主、次构造函数-------------------------------------
 class Student constructor(name: String) {
+    //属性初始化
+    // also在函数块内可以通过 it 指代该对象
+    val firstProperty = "First property: $name".also {
+        println(it)
+    }
+
     constructor(name: String, age: Int) : this(name) {
-        println("name is $name : age is $age")
+        println("次构造函数->name is $name : age is $age")
     }
 
     init {
-        println("name is $name")
+        println("初始化块->name is $name")
     }
 }
 
@@ -126,7 +156,7 @@ abstract class extendsBase : Base() {
     abstract override fun f()
 }
 
-//-----------------------抽象类-------------------------------------
+//-----------------------嵌套类-------------------------------------
 class Outer {
     private val name: String = "boyi.chen"
 
@@ -149,20 +179,22 @@ class Outer2 {
         val objects = this@Outer2
     }
 }
+
+
 //-----------------------匿名内部类-------------------------------------
+interface OnClickListener {
+    fun test()
+}
 
 class Test {
-    var v = "匿名内部类"
+    var name = "匿名内部类"
 
     fun setOnClickListener(test: OnClickListener) {
         test.test()
     }
-
 }
 
-interface OnClickListener {
-    fun test()
-}
+
 
 
 
