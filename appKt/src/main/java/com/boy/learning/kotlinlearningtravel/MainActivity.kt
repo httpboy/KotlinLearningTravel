@@ -1,10 +1,13 @@
 package com.boy.learning.kotlinlearningtravel
 
 import android.os.Bundle
+import android.provider.Contacts
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
+import com.boy.learning.kotlinlearningtravel.javavskotlin.Student
+import com.boy.learning.kotlinlearningtravel.javavskotlin.StudentKt
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.coroutines.*
@@ -43,9 +46,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         btn_click2.setOnClickListener(this)
+        //类定义对比
+        val xiaoming = StudentKt("小明",99)
+        val xiaohong=xiaoming.copy(mName = "小红")
+        Log.v(TAG," xiaoming 名字="+xiaoming.mName+",score="+xiaoming.mScore)
+        Log.v(TAG," xiaohong 名字="+xiaohong.mName+",score="+xiaohong.mScore+xiaohong.toString())
+        val xiaobai= Student("小白",100)
+        Log.v(TAG," xiaobai 名字="+xiaobai.name+",score="+xiaobai.score+xiaobai.toString())
+
+
+
+
 
         //协程启动方式一
-        Log.v(TAG," runCoroutineByFirstWay() start")
+
+        Log.v(TAG," runCoroutineByFirstWay() start"+
+                ",currentThreadName="+Thread.currentThread().name)
         runCoroutineByFirstWay()
         Log.v(TAG," runCoroutineByFirstWay() end")
         Log.v(TAG," runCoroutineBySecondWay() start")
@@ -54,6 +70,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         Log.v(TAG,"  runCoroutineByThirdWay() start")
         runCoroutineByThirdWay()
         Log.v(TAG,"  runCoroutineByThirdWay() end")
+
+
+        Log.v(TAG,"  2 下一个数字是"+2.getNext())
+
+
 
     }
 
@@ -67,7 +88,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      */
     private fun runCoroutineByFirstWay()= runBlocking {
         repeat(10) {
-            Log.v(TAG, "Coroutine test runCoroutineByFirstWay() start$it")
+            Log.v(TAG, "Coroutine test runCoroutineByFirstWay() start$it"+
+            ",currentThreadName="+Thread.currentThread().name)
             delay(52)
         }
 
@@ -80,10 +102,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      * 跟应用进程是挂钩的，不受控制，所以一般不建议用。
      */
     private fun runCoroutineBySecondWay() {
-        GlobalScope.launch(Dispatchers.Default, CoroutineStart.DEFAULT) {
+        GlobalScope.launch(Dispatchers.IO, CoroutineStart.DEFAULT) {
             delay(1000L)
-            println("Coroutine test runCoroutineBySecondWay()!")
-        }
+            Log.v(TAG, "Coroutine test runCoroutineBySecondWay() start"+
+                    ",currentThreadName="+Thread.currentThread().name)
+    }
     }
 
     /**
@@ -94,10 +117,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun runCoroutineByThirdWay()= runBlocking {
         val job=async(Dispatchers.Default){
             delay(200)
-            Log.v(TAG, "Coroutine test runCoroutineByThirdWay()")
+            Log.v(TAG, "Coroutine test runCoroutineByThirdWay()"+
+                    ",currentThreadName="+Thread.currentThread().name)
             return@async "hello i am runCoroutineByThirdWay()"
         }
-        Log.v(TAG, job.await())
+        Log.v(TAG, job.await()+
+                ",currentThreadName="+Thread.currentThread().name)
     }
 
     fun click3(v: View?) {
